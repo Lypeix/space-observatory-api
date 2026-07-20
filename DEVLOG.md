@@ -13,3 +13,5 @@
 - Added .gitignore to ignore pycache files
 - Added FastAPI app instance
 - .gitignore now also ignores generated SQLite database
+- Added automatic db tables creation during app start-up
+- Ran the FastAPI app with Uvicorn n checked "/" + "/docs" SwaggerUI client
