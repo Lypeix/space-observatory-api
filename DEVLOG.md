@@ -9,4 +9,4 @@
 - Created learning roadmap with Codex
 - Added the multi-file structure with Codex
 - Added SQLite connection in database.py 
-- Created table for celestial_objects 
+- Defined initial table for celestial_objects 
