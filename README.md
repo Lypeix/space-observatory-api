@@ -6,8 +6,7 @@ Backend project featuring FastAPI and SQL for "observing" celestial bodies and r
 
 ### Foundation
 
-- [ ] Create multi-file project structure
-- [ ] Install FastAPI, Uvicorn, and pytest
+- [x] Create multi-file project structure
 - [ ] Create FastAPI app instance
 - [ ] Create SQLite connection helper
 - [ ] Create `celestial_objects` table
