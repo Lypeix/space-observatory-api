@@ -10,7 +10,7 @@ def connect():
 
     return connection
 
-def create_table():
+def create_tables():
     connection = connect()
     cursor = connection.cursor()
 
