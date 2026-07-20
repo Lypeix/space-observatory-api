@@ -1,7 +1,7 @@
 # !DEVLOG!
 
 ## DAY 1 - 20.07.2026
-### Session 1 (~120mins)
+### Session 1 (~140mins)
 - Installed Git
 - Integrated Git with VSC
 - Learned basic Git commands (add, commit, push, pull)
@@ -10,3 +10,5 @@
 - Added the multi-file structure with Codex
 - Added SQLite connection in database.py 
 - Defined initial table for celestial_objects 
+- Added .gitignore to ignore pycache files
+- Added FastAPI app instance

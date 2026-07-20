@@ -8,8 +8,9 @@ Backend project featuring FastAPI and SQL for "observing" celestial bodies and r
 
 - [x] Install and configure Git
 - [x] Learn and implement Git basics
+- [x] Add .gitignore to ignore pycache
 - [x] Create multi-file project structure
-- [ ] Create FastAPI app instance
+- [x] Create FastAPI app instance
 - [x] Create SQLite connection helper
 - [x] Create `celestial_objects` table
 - [ ] Enable automatic table creation during development
