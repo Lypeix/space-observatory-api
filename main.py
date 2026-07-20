@@ -3,9 +3,9 @@
 
 from fastapi import FastAPI, status, HTTPException
 
-from pydantic import BaseModel, Field
-
 from database import create_tables
+
+from schemas import CelestialObjectCreate
 
 app = FastAPI(
     title="Space Observatory API",
@@ -13,13 +13,6 @@ app = FastAPI(
 )
 
 create_tables()
-
-class CelestialObjectCreate(BaseModel):
-    name: str = Field(min_length=1, max_length=100)
-    object_type: str = Field(min_length=1, max_length=100)
-    distance_light_years: float = Field(ge=0)
-    potentially_habitable: bool
-    description: str = Field(min_length=1, max_length=500)
 
 @app.get("/")
 def root():
