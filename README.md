@@ -13,7 +13,7 @@ Backend project featuring FastAPI and SQL for "observing" celestial bodies and r
 - [x] Create FastAPI app instance
 - [x] Create SQLite connection helper
 - [x] Create `celestial_objects` table
-- [ ] Enable automatic table creation during development
+- [x] Enable automatic table creation during development
 
 ### Database-Backed CRUD
 
