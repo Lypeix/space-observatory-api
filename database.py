@@ -38,3 +38,46 @@ def create_tables():
     connection.commit()
     connection.close()
 
+def insert_celestial_object(object_data: dict):
+    connection = connect()
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO celestial_objects (
+            name,           
+            object_type,
+            distance_light_years,
+            potentially_habitable,
+            description
+        )
+        VALUES (?, ?, ?, ?, ?)
+        """,
+        (
+            object_data["name"],
+            object_data["object_type"],
+            object_data["distance_light_years"],
+            object_data["potentially_habitable"],
+            object_data["description"],
+        ),
+    )
+
+    object_id = cursor.lastrowid
+    connection.commit()
+
+    cursor.execute("""
+        SELECT *
+        FROM celestial_objects
+        WHERE id = ?
+    """,
+        (object_id,),
+    )
+
+    created_object = dict(cursor.fetchone())
+    connection.close()
+
+    created_object["potentially_habitable"] = bool(
+        created_object["potentially_habitable"]
+    )
+
+    return created_object
