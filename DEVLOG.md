@@ -1,7 +1,7 @@
 # !DEVLOG!
 
 ## DAY 1 - 20.07.2026
-### Session 1 (~150mins)
+### Session 1 (~160mins)
 - Installed Git
 - Integrated Git with VSC
 - Learned basic Git commands (add, commit, push, pull)
