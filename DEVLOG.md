@@ -1,7 +1,7 @@
 # !DEVLOG!
 
 ## DAY 1 - 20.07.2026
-### Session 1 (~140mins)
+### Session 1 (~150mins)
 - Installed Git
 - Integrated Git with VSC
 - Learned basic Git commands (add, commit, push, pull)
@@ -12,3 +12,4 @@
 - Defined initial table for celestial_objects 
 - Added .gitignore to ignore pycache files
 - Added FastAPI app instance
+- .gitignore now also ignores generated SQLite database
