@@ -6,10 +6,12 @@ Backend project featuring FastAPI and SQL for "observing" celestial bodies and r
 
 ### Foundation
 
+- [x] Install and configure Git
+- [x] Learn and implement Git basics
 - [x] Create multi-file project structure
 - [ ] Create FastAPI app instance
-- [ ] Create SQLite connection helper
-- [ ] Create `celestial_objects` table
+- [x] Create SQLite connection helper
+- [x] Create `celestial_objects` table
 - [ ] Enable automatic table creation during development
 
 ### Database-Backed CRUD
