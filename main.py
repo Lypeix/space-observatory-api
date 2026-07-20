@@ -5,7 +5,7 @@ from fastapi import FastAPI, status, HTTPException
 
 from database import create_tables
 
-from schemas import CelestialObjectCreate
+from schemas import CelestialObjectCreate, CelestialObjectUpdate
 
 app = FastAPI(
     title="Space Observatory API",
@@ -19,4 +19,3 @@ def root():
     return {
         "message": "The Space Observatory API is fully operational! "
     }
-

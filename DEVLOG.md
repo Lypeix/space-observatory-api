@@ -16,3 +16,4 @@
 - Added automatic db tables creation during app start-up
 - Ran the FastAPI app with Uvicorn n checked "/" + "/docs" SwaggerUI client
 - Added CelestialObjectCreate Pydantic schema
+- Added CelestialUpdateCreate Pydantic schema
