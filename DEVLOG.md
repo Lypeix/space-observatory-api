@@ -1,7 +1,7 @@
 # !DEVLOG!
 
 ## DAY 1 - 20.07.2026
-### Session 1 (~160mins)
+### Session 1 (~190mins)
 - Installed Git
 - Integrated Git with VSC
 - Learned basic Git commands (add, commit, push, pull)
@@ -17,3 +17,6 @@
 - Ran the FastAPI app with Uvicorn n checked "/" + "/docs" SwaggerUI client
 - Added CelestialObjectCreate Pydantic schema
 - Added CelestialUpdateCreate Pydantic schema
+- Added insert_celestial_object to database.py
+- Added POST objects to main.py that interacts with insert_celestial_object
+- Ran the app and experimented with SwaggerUI

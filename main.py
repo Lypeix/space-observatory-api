@@ -3,7 +3,7 @@
 
 from fastapi import FastAPI, status, HTTPException
 
-from database import create_tables
+from database import create_tables, insert_celestial_object
 
 from schemas import CelestialObjectCreate, CelestialObjectUpdate
 
@@ -19,3 +19,8 @@ def root():
     return {
         "message": "The Space Observatory API is fully operational! "
     }
+
+@app.post("/objects", status_code=status.HTTP_201_CREATED)
+def create_object(object_data: CelestialObjectCreate):
+    return insert_celestial_object(object_data.model_dump())
+    

@@ -19,7 +19,7 @@ Backend project featuring FastAPI and SQL for "observing" celestial bodies and r
 
 - [x] Add `CelestialObjectCreate` Pydantic schema
 - [x] Add `CelestialObjectUpdate` Pydantic schema
-- [ ] Add `POST /objects`
+- [x] Add `POST /objects`
 - [ ] Add `GET /objects`
 - [ ] Add `GET /objects/{object_id}`
 - [ ] Add `PUT /objects/{object_id}`
