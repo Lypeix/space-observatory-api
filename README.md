@@ -2,16 +2,6 @@
 
 Backend project featuring FastAPI and SQL for "observing" celestial bodies and recording the observations
 
-## Project Structure
-
-space-observatory-api/
-├── main.py          # FastAPI app and endpoints
-├── database.py      # SQLite connection, tables, and queries
-├── schemas.py       # Pydantic request models
-├── tests/
-│   └── test_api.py  # API tests
-└── 
-
 ## Roadmap
 
 ### Foundation
@@ -61,3 +51,13 @@ space-observatory-api/
 - [ ] Add setup and run instructions
 - [ ] Add API usage examples
 - [ ] Document known limitations
+
+## Project Structure
+
+``` space-observatory-api/
+├── main.py          # FastAPI app and endpoints
+├── database.py      # SQLite connection, tables, and queries
+├── schemas.py       # Pydantic request models
+├── tests/
+│   └── test_api.py  # API tests
+└── 
