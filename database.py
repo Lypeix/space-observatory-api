@@ -38,6 +38,18 @@ def create_tables():
     connection.commit()
     connection.close()
 
+def row_to_celestial_object(row): # helper that makes that so potentially_habitable bool returns true/false to json instead of 0/1
+    if row is None:
+        return None
+    
+    object_data = dict(row)
+
+    object_data["potentially_habitable"] = bool(
+        object_data["potentially_habitable"]
+    )
+
+    return object_data
+
 def insert_celestial_object(object_data: dict):
     connection = connect()
     cursor = connection.cursor()
@@ -73,14 +85,10 @@ def insert_celestial_object(object_data: dict):
         (object_id,),
     )
 
-    created_object = dict(cursor.fetchone())
+    created_row = cursor.fetchone()
     connection.close()
 
-    created_object["potentially_habitable"] = bool(
-        created_object["potentially_habitable"]
-    )
-
-    return created_object
+    return row_to_celestial_object(created_row)
 
 def get_celestial_objects():
     connection = connect()
@@ -105,12 +113,32 @@ def get_celestial_objects():
     celestial_objects = []
 
     for row in rows:
-        object_data = dict(row)
-
-        object_data["potentially_habitable"] = bool(
-            object_data["potentially_habitable"]
+        celestial_objects.append(
+        row_to_celestial_object(row)
         )
 
-        celestial_objects.append(object_data)
-
     return celestial_objects 
+
+def get_celestial_object_by_id(object_id: int):
+    connection = connect()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+    SELECT
+        id,
+        name,           
+        object_type,
+        distance_light_years,
+        potentially_habitable,
+        description,
+        created_at
+    FROM celestial_objects
+    WHERE id = ?
+    """, 
+        (object_id,))
+    
+    row = cursor.fetchone()
+    connection.close()
+
+    return row_to_celestial_object(row)
+
