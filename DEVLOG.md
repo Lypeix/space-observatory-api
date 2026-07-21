@@ -20,3 +20,16 @@
 - Added insert_celestial_object to database.py
 - Added POST objects to main.py that interacts with insert_celestial_object
 - Ran the app and experimented with SwaggerUI
+
+## DAY 2 - 21.07.2026
+### Session 1 (~70mins)
+- Reconstructed in different theme until able to reproduce from memory:
+    - DATABASE_PATH
+    - connect()
+    - create_table()
+    - insert_training_plushie(plushie_data: dict)
+- Reviewed used concepts like:
+    - Path
+    - Row factory
+    - Fetching
+    - Overall SQLite structure
