@@ -21,6 +21,6 @@ def root():
     }
 
 @app.post("/objects", status_code=status.HTTP_201_CREATED)
-def create_object(object_data: CelestialObjectCreate):
-    return insert_celestial_object(object_data.model_dump())
+def create_object(object_data: CelestialObjectCreate): 
+    return insert_celestial_object(object_data.model_dump()) # model_dump converts pydantic into normal python dict so that SQLite can understand the ongoing lingo
     
