@@ -1,6 +1,6 @@
 # Space Observatory API
 
-Backend project featuring FastAPI and SQL for "observing" celestial bodies and recording the observations. Assisted with Codex
+Backend project featuring FastAPI and SQL for "observing" celestial bodies and recording the observations. Assisted by Codex
 
 ## Roadmap
 
