@@ -35,7 +35,7 @@
     - Overall SQLite structure
 - Fought Git
 
-### Session 2 (~70mins)
+### Session 2 (~75mins)
 - Reconstructed main.py n schemas.py
 - Theorised about how GET, POST, PUT, DELETE requests might look in a proper app like Steam
 - Implemented comment explanation for model_dump
