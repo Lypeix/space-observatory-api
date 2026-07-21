@@ -6,8 +6,8 @@
 - Integrated Git with VSC
 - Learned basic Git commands (add, commit, push, pull)
 - Cloned the Github repo and connected it to the local project 
-- Created learning roadmap with Codex
-- Added the multi-file structure with Codex
+- Created learning roadmap
+- Added the multi-file structure 
 - Added SQLite connection in database.py 
 - Defined initial table for celestial_objects 
 - Added .gitignore to ignore pycache files
