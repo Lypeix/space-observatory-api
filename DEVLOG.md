@@ -22,7 +22,7 @@
 - Ran the app and experimented with SwaggerUI
 
 ## DAY 2 - 21.07.2026
-### Session 1 (~70mins)
+### Session 1 (~85mins)
 - Reconstructed in different theme until able to reproduce from memory:
     - DATABASE_PATH
     - connect()
@@ -33,4 +33,4 @@
     - Row factory
     - Fetching
     - Overall SQLite structure
-- Fought Git
+- Fought Git/Vim
