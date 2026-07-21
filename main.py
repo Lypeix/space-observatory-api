@@ -3,7 +3,7 @@
 
 from fastapi import FastAPI, status, HTTPException
 
-from database import create_tables, insert_celestial_object
+from database import create_tables, insert_celestial_object, get_celestial_objects
 
 from schemas import CelestialObjectCreate, CelestialObjectUpdate
 
@@ -23,4 +23,8 @@ def root():
 @app.post("/objects", status_code=status.HTTP_201_CREATED)
 def create_object(object_data: CelestialObjectCreate): 
     return insert_celestial_object(object_data.model_dump()) # model_dump converts pydantic into normal python dict so that SQLite can understand the ongoing lingo
-    
+
+
+@app.get("/objects") # returns status code 200 OK by default
+def list_celestial_objects():
+    return get_celestial_objects()

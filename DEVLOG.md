@@ -35,7 +35,9 @@
     - Overall SQLite structure
 - Fought Git
 
-### Session 2 (~15mins)
+### Session 2 (~35mins)
 - Reconstructed main.py n schemas.py
-- Theorised about how /GET, /POST, /PUT, /DELETE requests might look in a proper app like Steam
+- Theorised about how GET, POST, PUT, DELETE requests might look in a proper app like Steam
 - Implemented comment explanation for model_dump
+- Added get_celestial_objects into database
+- Implemented list_celestial_objects as a GET endpoint to main.py

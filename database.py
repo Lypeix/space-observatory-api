@@ -81,3 +81,36 @@ def insert_celestial_object(object_data: dict):
     )
 
     return created_object
+
+def get_celestial_objects():
+    connection = connect()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+    SELECT 
+        id,
+        name,           
+        object_type,
+        distance_light_years,
+        potentially_habitable,
+        description,
+        created_at
+    FROM celestial_objects
+    ORDER BY id ASC
+    """)
+
+    rows = cursor.fetchall()
+    connection.close()
+
+    celestial_objects = []
+
+    for row in rows:
+        object_data = dict(row)
+
+        object_data["potentially_habitable"] = bool(
+            object_data["potentially_habitable"]
+        )
+
+        celestial_objects.append(object_data)
+
+    return celestial_objects 
