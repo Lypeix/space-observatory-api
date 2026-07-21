@@ -35,3 +35,49 @@ def create_table():
 
     connection.commit()
     connection.close()
+
+
+def insert_training_plushie(plushie_data: dict):
+    connection = connect()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+
+    INSERT INTO training_plushies (
+        name,
+        kg,
+        cute,
+        description
+    )
+                   
+    VALUES (?, ?, ?, ?)
+    """,
+    (
+        plushie_data["name"],
+        plushie_data["kg"],
+        plushie_data["cute"],
+        plushie_data["description"],
+        plushie_data["created_at"]
+    )    
+)
+    
+    plushie_id = cursor.lastrowdid
+    connection.commit()
+
+    cursor.execute("""
+    SELECT *
+    FROM training_plushies
+    WHERE id = ?
+    """,
+        (plushie_id,), 
+)
+    created_plushie = dict(cursor.fetchone())
+    connection.close()
+    
+
+
+    created_plushie["cute"] = bool(
+        created_plushie["cute"]
+    )
+
+    return created_plushie
