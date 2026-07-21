@@ -2,6 +2,7 @@ import sqlite3
 from pathlib import Path
 
 DATABASE_PATH = Path(__file__).resolve().parent / "training.db"
+                    
 
 def connect():
     connection = sqlite3.connect(DATABASE_PATH)
@@ -56,12 +57,11 @@ def insert_training_plushie(plushie_data: dict):
         plushie_data["name"],
         plushie_data["kg"],
         plushie_data["cute"],
-        plushie_data["description"],
-        plushie_data["created_at"]
+        plushie_data["description"]
     )    
 )
     
-    plushie_id = cursor.lastrowdid
+    plushie_id = cursor.lastrowid
     connection.commit()
 
     cursor.execute("""
