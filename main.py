@@ -3,7 +3,7 @@
 
 from fastapi import FastAPI, status, HTTPException
 
-from database import create_tables, insert_celestial_object, get_celestial_objects
+from database import create_tables, insert_celestial_object, get_celestial_objects, get_celestial_object_by_id
 
 from schemas import CelestialObjectCreate, CelestialObjectUpdate
 
@@ -28,3 +28,15 @@ def create_object(object_data: CelestialObjectCreate):
 @app.get("/objects") # returns status code 200 OK by default
 def list_celestial_objects():
     return get_celestial_objects()
+
+@app.get("/objects/{object_id}")
+def get_object(object_id: int):
+    celestial_object = get_celestial_object_by_id(object_id)
+
+    if celestial_object is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Celestial object not found"
+            ) 
+    
+    return celestial_object

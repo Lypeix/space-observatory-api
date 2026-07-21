@@ -35,9 +35,15 @@
     - Overall SQLite structure
 - Fought Git
 
-### Session 2 (~35mins)
+### Session 2 (~70mins)
 - Reconstructed main.py n schemas.py
 - Theorised about how GET, POST, PUT, DELETE requests might look in a proper app like Steam
 - Implemented comment explanation for model_dump
-- Added get_celestial_objects into database
-- Implemented list_celestial_objects as a GET endpoint to main.py
+- Added get_celestial_objects() into database
+- Wired GET endpoint to get_celestial_objects() in the database layer
+- Created row_to_celestial_object() helper in the database so that booleans are returned as true/false instead of SQLite's 0/1
+- Replaced repeated row conversion code in the database functions with the helper
+- Implemented get_celestial_object_by_id() to view only one object chosen by its id
+- Wired GET /objects/{object_id} to the db lookup func
+- Added 404 response for ids that dont exist
+- Tested the new functions with SwaggerUI
