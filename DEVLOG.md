@@ -47,3 +47,7 @@
 - Wired GET /objects/{object_id} to the db lookup func
 - Added 404 response for ids that dont exist
 - Tested the new functions with SwaggerUI
+
+## DAY 3 - 22.07.2026
+### Session 1 (~15mins)
+- Reconstructed database funcs from yesterday in sql_reconstruction from memory

@@ -37,6 +37,18 @@ def create_table():
     connection.commit()
     connection.close()
 
+def row_to_plushie(row):
+    if row is None:
+        return None
+
+    plushie_data = dict(row)
+
+    plushie_data["cute"] = bool(
+        plushie_data["cute"]
+    )
+
+    return plushie_data
+
 
 def insert_training_plushie(plushie_data: dict):
     connection = connect()
@@ -71,13 +83,55 @@ def insert_training_plushie(plushie_data: dict):
     """,
         (plushie_id,), 
 )
-    created_plushie = dict(cursor.fetchone())
+    row = cursor.fetchone()
     connection.close()
-    
 
+    return row_to_plushie(row)
 
-    created_plushie["cute"] = bool(
-        created_plushie["cute"]
-    )
+def get_plushies():
+    connection = connect()
+    cursor = connection.cursor()
 
-    return created_plushie
+    cursor.execute("""
+    SELECT 
+        id,
+        name,
+        kg,
+        cute,
+        description
+    FROM training_plushies
+    ORDER BY id ASC
+""")
+
+    rows = cursor.fetchall()
+    connection.close()
+
+    plushies_list = []
+
+    for row in rows:
+        plushies_list.append(
+        row_to_plushie(row)
+        )
+
+    return row_to_plushie(row)
+
+def get_plushie_by_id(plushie_id: int):
+    connection = connect()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+    SELECT
+        id,
+        name,
+        kg,
+        cute,
+        description
+    FROM training_plushies
+
+""",
+    (plushie_id,))
+
+    row = cursor.fetchone()
+    connection.close()
+
+    return row_to_plushie(row)
