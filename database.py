@@ -189,3 +189,20 @@ def update_celestial_object(object_id: int, object_data: dict):
     connection.close()
 
     return row_to_celestial_object(updated_row)
+
+def delete_celestial_object(object_id: int):
+    connection = connect()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        DELETE FROM celestial_objects
+        WHERE id = ?
+    """, (object_id,))
+
+    deleted_object = cursor.rowcount > 0
+
+    connection.commit()
+    connection.close()
+
+    return deleted_object
+    
