@@ -16,7 +16,7 @@
 - Added automatic db tables creation during app start-up
 - Ran the FastAPI app with Uvicorn n checked "/" + "/docs" SwaggerUI client
 - Added CelestialObjectCreate Pydantic schema
-- Added CelestialUpdateCreate Pydantic schema
+- Added CelestialObjectUpdate Pydantic schema
 - Added insert_celestial_object to database.py
 - Added POST objects to main.py that interacts with insert_celestial_object
 - Ran the app and experimented with SwaggerUI
@@ -58,4 +58,5 @@
 ### Session 2 (~15mins)
 - Added delete_celestial_object() in the database layer
 - Hooked up delete_celestial_object() through DELETE endpoint
-- Tested the new function with 
+- Tested the new function with SwaggerUI
+- Completed the database-backed CRUD section
