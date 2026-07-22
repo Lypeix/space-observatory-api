@@ -127,7 +127,8 @@ def get_plushie_by_id(plushie_id: int):
         cute,
         description
     FROM training_plushies
-
+    WHERE id = ?
+    
 """,
     (plushie_id,))
 
