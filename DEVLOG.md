@@ -54,3 +54,8 @@
 - Implemented update_celestial_object() in the database layer
 - Wired PUT endpoint to update_celestial_object()
 - Tested the new update with SwaggerUI
+
+### Session 2 (~15mins)
+- Added delete_celestial_object() in the database layer
+- Hooked up delete_celestial_object() through DELETE endpoint
+- Tested the new function with 

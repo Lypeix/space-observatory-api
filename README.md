@@ -24,8 +24,8 @@ Backend project featuring FastAPI and SQL for "observing" celestial bodies and r
 - [x] Add `GET /objects`
 - [x] Add `GET /objects/{object_id}`
 - [x] Add `PUT /objects/{object_id}`
-- [ ] Add `DELETE /objects/{object_id}`
-- [ ] Return `404 Not Found` for missing objects
+- [x] Add `DELETE /objects/{object_id}`
+- [x] Return `404 Not Found` for missing objects
 
 
 ### Querying
