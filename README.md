@@ -35,7 +35,7 @@ Backend project featuring FastAPI and SQL for "observing" celestial bodies and r
 - [ ] Add filtering by object type
 - [ ] Add filtering by potential habitability
 - [ ] Add `limit` and `offset` pagination
-- [ ] Add automatic creation timestamps
+- [x] Add automatic creation timestamps
 
 ### Observations
 
