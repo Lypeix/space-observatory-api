@@ -142,3 +142,50 @@ def get_celestial_object_by_id(object_id: int):
 
     return row_to_celestial_object(row)
 
+def update_celestial_object(object_id: int, object_data: dict):
+    connection = connect()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        UPDATE celestial_objects
+        SET
+            name = ?,
+            object_type = ?,
+            distance_light_years = ?,
+            potentially_habitable = ?,
+            description = ?
+        WHERE id = ?
+    """,
+        (
+        object_data["name"],
+        object_data["object_type"],
+        object_data["distance_light_years"],
+        object_data["potentially_habitable"],
+        object_data["description"],
+        object_id
+    )
+    )
+
+    if cursor.rowcount == 0:
+        connection.close()
+        return None
+
+    connection.commit()
+
+    cursor.execute("""
+        SELECT
+            id,
+            name,
+            object_type,
+            distance_light_years,
+            potentially_habitable,
+            description,
+            created_at
+        FROM celestial_objects
+        WHERE id = ?
+""", (object_id,))
+
+    updated_row = cursor.fetchone()
+    connection.close()
+
+    return row_to_celestial_object(updated_row)
