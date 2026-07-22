@@ -49,5 +49,8 @@
 - Tested the new functions with SwaggerUI
 
 ## DAY 3 - 22.07.2026
-### Session 1 (~15mins)
-- Reconstructed database funcs from yesterday in sql_reconstruction from memory
+### Session 1 (~35mins)
+- Reconstructed yesterday's db functions from memory in sql_reconstruction
+- Implemented update_celestial_object() in the database layer
+- Wired PUT endpoint to update_celestial_object()
+- Tested the new update with SwaggerUI

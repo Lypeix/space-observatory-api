@@ -3,7 +3,7 @@
 
 from fastapi import FastAPI, status, HTTPException
 
-from database import create_tables, insert_celestial_object, get_celestial_objects, get_celestial_object_by_id
+from database import create_tables, insert_celestial_object, get_celestial_objects, get_celestial_object_by_id, update_celestial_object
 
 from schemas import CelestialObjectCreate, CelestialObjectUpdate
 
@@ -39,4 +39,19 @@ def get_object(object_id: int):
             detail="Celestial object not found"
             ) 
     
+    return celestial_object
+
+@app.put("/objects/{object_id}")
+def update_object(object_id: int, object_data: CelestialObjectUpdate):
+    celestial_object = update_celestial_object(
+        object_id,
+        object_data.model_dump()
+    )
+
+    if celestial_object is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Celestial object not found"
+        )
+
     return celestial_object
