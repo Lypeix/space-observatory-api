@@ -63,7 +63,7 @@
 
 ## DAY 4 - 23.07.2026
 ### Session 1 (~80mins)
-- Extended get_celestial_object() with:
+- Extended get_celestial_objects() with:
     - optional case-insensitive name searching
     - object type filter
     - potentially habitable filter
