@@ -60,3 +60,9 @@
 - Hooked up delete_celestial_object() through DELETE endpoint
 - Tested the new function with SwaggerUI
 - Completed the database-backed CRUD section
+
+## DAY 4 - 23.07.2026
+### Session 1 (~15mins)
+- Updated get_celestial_object() to feature optional case-insensitive name searcing
+- Added validated name query parameter to GET /objects 
+- Tested name searching with SwaggerUI

@@ -1,18 +1,21 @@
 # Start the server from PowerShell:
 # py -m uvicorn main:app --reload
 
-from fastapi import FastAPI, status, HTTPException
+from fastapi import FastAPI, status, Query, HTTPException
 
 from database import create_tables, insert_celestial_object, get_celestial_objects, get_celestial_object_by_id, update_celestial_object, delete_celestial_object
 
 from schemas import CelestialObjectCreate, CelestialObjectUpdate
+
 
 app = FastAPI(
     title="Space Observatory API",
     description="Cool API project for cataloguing celestial objects and observations"
 )
 
+
 create_tables()
+
 
 @app.get("/")
 def root():
@@ -20,14 +23,22 @@ def root():
         "message": "The Space Observatory API is fully operational! "
     }
 
+
 @app.post("/objects", status_code=status.HTTP_201_CREATED)
 def create_object(object_data: CelestialObjectCreate): 
     return insert_celestial_object(object_data.model_dump()) # model_dump converts pydantic into normal python dict so that SQLite can understand the ongoing lingo
 
 
 @app.get("/objects") # returns status code 200 OK by default
-def list_celestial_objects():
-    return get_celestial_objects()
+def list_celestial_objects(
+    name: str | None = Query(
+        default=None,
+        min_length=1,
+        max_length=100
+    )
+):
+    return get_celestial_objects(name)
+
 
 @app.get("/objects/{object_id}")
 def get_object(object_id: int):
@@ -40,6 +51,7 @@ def get_object(object_id: int):
             ) 
     
     return celestial_object
+
 
 @app.put("/objects/{object_id}")
 def update_object(object_id: int, object_data: CelestialObjectUpdate):
@@ -56,6 +68,7 @@ def update_object(object_id: int, object_data: CelestialObjectUpdate):
 
     return celestial_object
 
+
 @app.delete("/objects/{object_id}")
 def delete_object(object_id: int):
     deleted_object = delete_celestial_object(object_id)
@@ -70,3 +83,6 @@ def delete_object(object_id: int):
         "message": "Object has been successfuly deleted",
         "object": object_id
     }
+
+
+
