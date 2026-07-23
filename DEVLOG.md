@@ -62,7 +62,13 @@
 - Completed the database-backed CRUD section
 
 ## DAY 4 - 23.07.2026
-### Session 1 (~15mins)
-- Updated get_celestial_object() to feature optional case-insensitive name searcing
-- Added validated name query parameter to GET /objects 
-- Tested name searching with SwaggerUI
+### Session 1 (~80mins)
+- Extended get_celestial_object() with:
+    - optional case-insensitive name searching
+    - object type filter
+    - potentially habitable filter
+    - limit
+    - offset
+- Added validated query parameters to GET /objects 
+- Tested name searching, filtering and pagination with SwaggerUI
+- Added few comments and a reference

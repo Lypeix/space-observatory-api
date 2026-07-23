@@ -35,9 +35,36 @@ def list_celestial_objects(
         default=None,
         min_length=1,
         max_length=100
+    ),
+
+    object_type: str | None = Query(
+        default=None,
+        min_length=1,
+        max_length=150
+    ),
+
+    potentially_habitable: bool | None = Query(
+        default=None
+    ),
+
+    limit: int = Query(
+        default=50,
+        ge=1, # great or equal to 1
+        le=100 # lesser or equal to 100 so limit is between 1 and 100.
+    ),
+    offset: int = Query(
+        default=0,
+        ge=0
     )
 ):
-    return get_celestial_objects(name)
+    
+    return get_celestial_objects(
+        name, 
+        object_type,
+        potentially_habitable,
+        limit,
+        offset
+        )
 
 
 @app.get("/objects/{object_id}")
