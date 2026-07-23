@@ -31,9 +31,9 @@ Database-backed REST API built with FastAPI n SQL for "observing" celestial bodi
 ### Querying
 
 - [x] Add search by object name
-- [ ] Add filtering by object type
-- [ ] Add filtering by potential habitability
-- [ ] Add `limit` and `offset` pagination
+- [x] Add filtering by object type
+- [x] Add filtering by potential habitability
+- [x] Add `limit` and `offset` pagination
 - [x] Add automatic creation timestamps
 
 ### Observations

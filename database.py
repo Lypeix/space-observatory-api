@@ -94,7 +94,14 @@ def insert_celestial_object(object_data: dict):
 
     return row_to_celestial_object(created_row)
 
-def get_celestial_objects(name: str | None = None):
+def get_celestial_objects(
+    name: str | None = None,
+    object_type: str | None = None,
+    potentially_habitable: bool | None = None,
+    limit: int = 50,
+    offset: int = 0 # skips rows regardless of ids
+):
+
     connection = connect()
     cursor = connection.cursor()
 
@@ -110,17 +117,38 @@ def get_celestial_objects(name: str | None = None):
         FROM celestial_objects
     """
 
+    conditions = []
     parameters = []
 
     if name is not None:
-        query += """
-    WHERE LOWER(name) LIKE LOWER(?)
-"""
+        conditions.append(
+            "LOWER(name) LIKE LOWER(?)"
+        )
         parameters.append(f"%{name}%")
 
+    if object_type is not None:
+        conditions.append(
+            "LOWER(object_type) = LOWER(?)"
+        )
+        parameters.append(object_type)
+
+    if potentially_habitable is not None:
+        conditions.append(
+            "potentially_habitable = ?"
+        )
+        parameters.append(int(potentially_habitable))
+
+    if conditions:
+        query += " WHERE " + " AND ".join(conditions) # WHERE keeps the rows matching filters
+                                                      # AND.join(conditions) is for more than 1 filter to be included
+
     query += """
-    ORDER BY id ASC
+        ORDER BY id ASC
+        LIMIT ?
+        OFFSET ? 
     """
+
+    parameters.extend([limit, offset])
 
     cursor.execute(query, parameters)
 
@@ -128,6 +156,21 @@ def get_celestial_objects(name: str | None = None):
     connection.close()
 
     return [row_to_celestial_object(row) for row in rows]
+
+# IF NO FILTERS APPLIED, THERE WILL BE NO "WHERE" OR "AND" SESSION
+# STRUCTURE EXAMPLE:
+#    query = """
+#        SELECT ...
+#        FROM celestial_objects
+#        WHERE LOWER(name) LIKE LOWER(?) (LOWER always converts texts to lower case so its case-insensitive)
+#        AND LOWER(object_type) = LOWER(?) 
+#        ORDER BY id ASC (ascending order)
+#        LIMIT ?
+#        OFFSET ?
+#    """
+#    parameters match each ? from left to right
+#    parameters = ["%TON 618%", "Black Hole", 10, 0]
+#                     name          type   limit, offset
 
 
 def get_celestial_object_by_id(object_id: int):
