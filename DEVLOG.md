@@ -74,7 +74,7 @@
 - Added few comments and a reference
 
 ## DAY 5 - 24.07.2026
-### Session 1 (~95mins)
+### Session 1 (~115mins)
 - Enabled SQLite Foreign Keys
 - Created observation table
 - Linked observations to celestial_objects through a romantic relationship
@@ -87,3 +87,7 @@
 - Ran first test through SwaggerUI
 - Debugged insert_observation (object_id came from URL path unlike observer n details which came from the request body (input))
 - Ran second test through SwaggerUI (very successful)
+- Added get_observations to db
+- Wired GET endpoint to get_observations 
+- Ran a successful test
+- Learned when to use "if not" versus "is None"
