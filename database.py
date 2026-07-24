@@ -305,7 +305,7 @@ def insert_observation(
 
     object_exists = cursor.fetchone()
 
-    if not object_exists: 
+    if object_exists is None: 
         connection.close()
         return None
 
