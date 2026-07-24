@@ -110,6 +110,3 @@ def delete_object(object_id: int):
         "message": "Object has been successfuly deleted",
         "object": object_id
     }
-
-
-

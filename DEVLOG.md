@@ -74,8 +74,11 @@
 - Added few comments and a reference
 
 ## DAY 5 - 24.07.2026
-### Session 1 (~25mins)
+### Session 1 (~65mins)
 - Enabled SQLite Foreign Keys
 - Created observation table
 - Linked observations to celestial_objects through a romantic relationship
 - Added cascading deletion ensuring observations wont outlast their partners
+- Added row_to_observation() helper in db
+- Implemented insert_observation() in db for the POST endpoint to use
+

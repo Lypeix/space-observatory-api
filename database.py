@@ -48,7 +48,7 @@ def create_tables():
 
         details TEXT NOT NULL,
 
-        time TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        observed_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
         FOREIGN KEY (object_id)
             REFERENCES celestial_objects(id)
@@ -75,6 +75,11 @@ def row_to_celestial_object(row): # helper that makes that so potentially_habita
 
     return object_data
 
+def row_to_observation(row):
+    if row is None:
+        return None
+
+    return dict(row)
 
 def insert_celestial_object(object_data: dict):
     connection = connect()
@@ -285,3 +290,55 @@ def delete_celestial_object(object_id: int):
     return deleted_object
 
 
+def insert_observation(
+    object_id: int,
+    observation_data: dict
+    ):
+
+    connection = connect()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+    SELECT 1
+    FROM celestial_objects
+    WHERE id = ?
+""", (object_id,))
+
+    object_exists = cursor.fetchone()
+
+    if not object_exists: 
+        connection.close()
+        return None
+
+    cursor.execute("""
+    INSERT INTO observations (
+        object_id,
+        observer,
+        details
+    )
+    VALUES (?, ?, ?)
+""", (
+    observation_data["object_id"],
+    observation_data["observer"],
+    observation_data["details"]
+    )
+)
+
+    observation_id = cursor.lastrowid
+    connection.commit()
+
+    cursor.execute("""
+    SELECT
+        id,
+        object_id,
+        observer,
+        details,
+        observed_at
+    FROM observations
+    WHERE id = ?
+""", (observation_id,))
+
+    created_row = cursor.fetchone()
+    connection.close()
+
+    return row_to_observation(created_row)
