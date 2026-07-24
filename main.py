@@ -3,9 +3,10 @@
 
 from fastapi import FastAPI, status, Query, HTTPException
 
-from database import create_tables, insert_celestial_object, get_celestial_objects, get_celestial_object_by_id, update_celestial_object, delete_celestial_object
+from database import (create_tables, insert_celestial_object, get_celestial_objects, get_celestial_object_by_id,
+                    update_celestial_object, delete_celestial_object, insert_observation)
 
-from schemas import CelestialObjectCreate, CelestialObjectUpdate
+from schemas import CelestialObjectCreate, CelestialObjectUpdate, ObservationCreate
 
 
 app = FastAPI(
@@ -110,3 +111,24 @@ def delete_object(object_id: int):
         "message": "Object has been successfuly deleted",
         "object": object_id
     }
+
+@app.post("/objects/{object_id}/observations",
+        status_code=status.HTTP_201_CREATED
+        )
+def create_observation(
+    object_id: int,
+    observation_data: ObservationCreate
+):
+
+    created_observation = insert_observation(
+        object_id,
+        observation_data.model_dump()
+    )
+
+    if not created_observation:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Object not found"
+        )
+
+    return created_observation

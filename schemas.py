@@ -14,4 +14,6 @@ class CelestialObjectUpdate(BaseModel):
     potentially_habitable: bool
     description: str = Field(min_length=1, max_length=500)
 
-    
+class ObservationCreate(BaseModel):
+    observer: str = Field(min_length=1, max_length=100)
+    details: str = Field(min_length=1, max_length=1000)
