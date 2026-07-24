@@ -74,7 +74,7 @@
 - Added few comments and a reference
 
 ## DAY 5 - 24.07.2026
-### Session 1 (~120mins)
+### Session 1 (~135mins)
 - Enabled SQLite Foreign Keys
 - Created observation table
 - Linked observations to celestial_objects through a romantic relationship
@@ -91,3 +91,7 @@
 - Wired GET endpoint to get_observations 
 - Ran a successful test
 - Learned when to use "if not" versus "is None"
+- Reviewed the code
+- Fixed get_plushies return bug in sql_reconstruction
+- Replaced READ.ME tree with ASCII tree
+- Added whitespace removal to schemas.py through ConfigDict
