@@ -74,7 +74,7 @@
 - Added few comments and a reference
 
 ## DAY 5 - 24.07.2026
-### Session 1 (~115mins)
+### Session 1 (~120mins)
 - Enabled SQLite Foreign Keys
 - Created observation table
 - Linked observations to celestial_objects through a romantic relationship
