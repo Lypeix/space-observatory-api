@@ -140,7 +140,7 @@ def list_observations(object_id: int):
     if observations is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Observation not found"
+            detail="Celestial object not found"
         )
 
     return observations
