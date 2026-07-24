@@ -54,7 +54,6 @@ def create_tables():
             REFERENCES celestial_objects(id)
             ON DELETE CASCADE 
     ) 
-
 """)            # FOREIGN KEY - Sets up the stage for different table to be referenced (relationship)
                 # References - Assigns observations.object_id to celestial_object.id (NOT observation id)
                 # ON DELETE CASCADE - Deletes all observations alligned with the deleted object
@@ -318,7 +317,7 @@ def insert_observation(
     )
     VALUES (?, ?, ?)
 """, (
-    observation_data["object_id"],
+    object_id,
     observation_data["observer"],
     observation_data["details"]
     )
