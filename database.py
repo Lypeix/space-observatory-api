@@ -8,6 +8,7 @@ DATABASE_PATH = Path(__file__).resolve().parent / "space_observatory.db"
 def connect():
     connection = sqlite3.connect(DATABASE_PATH)
     connection.row_factory = sqlite3.Row # changes fetched db rows from tuples into rows that can be accessed through column names n converted into dicts
+    connection.execute("PRAGMA foreign_keys = on")
 
     return connection
 
@@ -36,6 +37,27 @@ def create_tables():
         )
     """
     )
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS observations (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+        object_id INTEGER NOT NULL,
+
+        observer TEXT NOT NULL,
+
+        details TEXT NOT NULL,
+
+        time TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+        FOREIGN KEY (object_id)
+            REFERENCES celestial_objects(id)
+            ON DELETE CASCADE 
+    ) 
+
+""")            # FOREIGN KEY - Sets up the stage for different table to be referenced (relationship)
+                # References - Assigns observations.object_id to celestial_object.id (NOT observation id)
+                # ON DELETE CASCADE - Deletes all observations alligned with the deleted object
 
     connection.commit()
     connection.close()
@@ -261,4 +283,5 @@ def delete_celestial_object(object_id: int):
     connection.close()
 
     return deleted_object
+
 

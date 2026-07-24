@@ -72,3 +72,10 @@
 - Added validated query parameters to GET /objects 
 - Tested name searching, filtering and pagination with SwaggerUI
 - Added few comments and a reference
+
+## DAY 5 - 24.07.2026
+### Session 1 (~25mins)
+- Enabled SQLite Foreign Keys
+- Created observation table
+- Linked observations to celestial_objects through a romantic relationship
+- Added cascading deletion ensuring observations wont outlast their partners
