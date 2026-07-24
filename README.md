@@ -38,8 +38,8 @@ Database-backed REST API built with FastAPI n SQL for "observing" celestial bodi
 
 ### Observations
 
-- [ ] Create `observations` table
-- [ ] Associate observations with celestial objects using `object_id`
+- [x] Create `observations` table
+- [x] Associate observations with celestial objects using `object_id`
 - [ ] Add `POST /objects/{object_id}/observations`
 - [ ] Add `GET /objects/{object_id}/observations`
 - [ ] Prevent observations from being added to nonexistent objects
