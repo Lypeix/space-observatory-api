@@ -13,3 +13,5 @@ class CelestialObjectUpdate(BaseModel):
     distance_light_years: float = Field(ge=0)
     potentially_habitable: bool
     description: str = Field(min_length=1, max_length=500)
+
+    
