@@ -341,3 +341,36 @@ def insert_observation(
     connection.close()
 
     return row_to_observation(created_row)
+
+def get_observations(object_id: int):
+    connection = connect()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+    SELECT 1
+    FROM celestial_objects
+    WHERE id = ?
+""", (object_id,))
+
+    object_exists = cursor.fetchone()
+
+    if not object_exists:
+        connection.close()
+        return None
+
+    cursor.execute("""
+    SELECT 
+        id,
+        object_id,
+        observer,
+        details,
+        observed_at
+    FROM observations
+    WHERE object_id = ?
+    ORDER BY id ASC
+""", (object_id,))
+
+    rows = cursor.fetchall()
+    connection.close()
+
+    return [row_to_observation(row) for row in rows]

@@ -4,7 +4,7 @@
 from fastapi import FastAPI, status, Query, HTTPException
 
 from database import (create_tables, insert_celestial_object, get_celestial_objects, get_celestial_object_by_id,
-                    update_celestial_object, delete_celestial_object, insert_observation)
+                    update_celestial_object, delete_celestial_object, insert_observation, get_observations)
 
 from schemas import CelestialObjectCreate, CelestialObjectUpdate, ObservationCreate
 
@@ -125,10 +125,22 @@ def create_observation(
         observation_data.model_dump()
     )
 
-    if not created_observation:
+    if created_observation is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Object not found"
         )
 
     return created_observation
+
+@app.get("/objects/{object_id}/observations")
+def list_observations(object_id: int):
+    observations = get_observations(object_id)
+
+    if observations is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Observation not found"
+        )
+
+    return observations
