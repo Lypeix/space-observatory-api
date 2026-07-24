@@ -56,13 +56,13 @@ Database-backed REST API built with FastAPI n SQL for "observing" celestial bodi
 
 ## Project Structure
 
-``` space-observatory-api/
-│   database.py
-│   DEVLOG.md
-│   main.py
-│   README.md
-│   requirements.txt
-│   schemas.py
-│   
-└───tests
-        test_api.py
+``` text
+space-observatory-api/
+|-- database.py
+|-- DEVLOG.md
+|-- main.py
+|-- README.md
+|-- requirements.txt
+|-- schemas.py
+`-- tests/
+    `-- test_api.py

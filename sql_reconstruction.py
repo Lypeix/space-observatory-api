@@ -113,7 +113,7 @@ def get_plushies():
         row_to_plushie(row)
         )
 
-    return row_to_plushie(row)
+    return plushies_list
 
 def get_plushie_by_id(plushie_id: int):
     connection = connect()
