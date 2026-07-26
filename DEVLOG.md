@@ -100,7 +100,7 @@
 Break day
 
 ## DAY 7 - 26.07.2026
-### Session 1 (~30mins)
+### Session 1 (~50mins)
 - Added FastAPI lifespan handler
 - Moved db table creation into the lifespan handler
 - Started automatic testing setup
