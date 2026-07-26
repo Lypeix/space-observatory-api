@@ -59,3 +59,11 @@ def test_create_object(client):
     assert created_object["name"] == "Kepler-186f"
     assert created_object["potentially_habitable"] is True 
     assert "created_at" in created_object
+
+def test_get_objects(client):
+    created_object = create_test_object(client)
+
+    response = client.get("/objects")
+
+    assert response.status_code == 200
+    assert response.json() == [created_object]
