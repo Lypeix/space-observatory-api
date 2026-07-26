@@ -115,3 +115,6 @@ Break day
 - Implemented a GET test
 - Implemented a PUT test
 - Implemented a DELETE test
+
+### Session 2 (~10mins)
+- Added test for missing objects

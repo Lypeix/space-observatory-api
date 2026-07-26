@@ -94,3 +94,15 @@ def test_delete_objects(client):
     get_response = client.get(f"/objects/{object_id}")
 
     assert get_response.status_code == 404
+
+def test_missing_object_returns_404(client): # checks HTTPExceptions
+    assert client.get("/objects/999").status_code == 404
+
+    assert client.put("/objects/999", json=UPDATED_OBJECT_DATA).status_code == 404
+
+    assert client.delete("/objects/999").status_code == 404
+
+    assert client.post("/objects/999/observations", json=OBSERVATION_DATA).status_code == 404 # proves observation cant be attached to a non-existent object
+
+
+
