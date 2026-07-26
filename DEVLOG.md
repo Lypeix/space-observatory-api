@@ -103,7 +103,7 @@ Break day
 ### Session 1 (~100mins)
 - Added FastAPI lifespan handler
 - Moved db table creation into the lifespan handler
-- Started automatic testing setup
+- Started automated testing setup
 - Featured comments with explanations
 - Created reusable request payloads 4 object creation, updates n observations
 - Added reusable client fixture
