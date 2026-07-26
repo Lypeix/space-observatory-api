@@ -104,5 +104,19 @@ def test_missing_object_returns_404(client): # checks HTTPExceptions
 
     assert client.post("/objects/999/observations", json=OBSERVATION_DATA).status_code == 404 # proves observation cant be attached to a non-existent object
 
+def test_invalid_object_returns_422(client):
+    invalid_object = OBJECT_DATA.copy()
+    invalid_object["distance_light_years"] = -10
 
+    response = client.post("/objects", json=invalid_object)
+
+    assert response.status_code == 422
+
+def test_whitespace_name_returns_422(client):
+    invalid_object = OBJECT_DATA.copy()
+    invalid_object["name"] = " "
+
+    response = client.post("/objects", json=invalid_object)
+
+    assert response.status_code == 422
 
