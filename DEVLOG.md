@@ -116,6 +116,6 @@ Break day
 - Implemented a PUT test
 - Implemented a DELETE test
 
-### Session 2 (~10mins)
+### Session 2 (~20mins)
 - Added test for whether distance light year can be put as negative during object creation
 - Added test for whether whitespace can be used as a name
