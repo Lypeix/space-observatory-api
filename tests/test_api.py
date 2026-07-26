@@ -41,3 +41,10 @@ def client(tmp_path, monkeypatch):
     with TestClient(app) as test_client: # creates client connected to the app and runs its lifespan
         yield test_client # passes client into the test
 
+def create_test_object(client):
+    response = client.post("/objects", json=OBJECT_DATA)
+
+    assert response.status_code == 201 # fails if API doesnt return status code 201 Created
+
+    return response.json() # passes the created object so that the other tests can reuse it
+
