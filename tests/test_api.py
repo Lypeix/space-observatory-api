@@ -67,3 +67,20 @@ def test_get_objects(client):
 
     assert response.status_code == 200
     assert response.json() == [created_object]
+
+def test_update_objects(client):
+    created_object = create_test_object(client)
+    object_id = created_object["id"]
+
+
+    response = client.put(f"/objects/{object_id}", json=UPDATED_OBJECT_DATA)
+
+    assert response.status_code == 200
+
+    updated_object = response.json()
+
+    assert updated_object["id"] == object_id
+    assert updated_object["name"] == "Kepler-186f Updated"
+    assert updated_object["potentially_habitable"] is False
+
+    

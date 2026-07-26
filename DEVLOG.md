@@ -100,7 +100,7 @@
 Break day
 
 ## DAY 7 - 26.07.2026
-### Session 1 (~80mins)
+### Session 1 (~90mins)
 - Added FastAPI lifespan handler
 - Moved db table creation into the lifespan handler
 - Started automatic testing setup
@@ -113,3 +113,4 @@ Break day
 - Added helper function for tests to use
 - Implemented a POST test
 - Implemented a GET test
+- Implemented a PUT test
