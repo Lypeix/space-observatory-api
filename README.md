@@ -46,10 +46,10 @@ Database-backed REST API built with FastAPI n SQL for "observing" celestial bodi
 
 ### Quality
 
-- [ ] Add API tests using FastAPI `TestClient`
-- [ ] Test successful CRUD operations
-- [ ] Test `404` responses
-- [ ] Test Pydantic validation errors
+- [x] Add API tests using FastAPI `TestClient`
+- [x] Test successful CRUD operations
+- [x] Test `404` responses
+- [x] Test Pydantic validation errors
 - [ ] Add setup and run instructions
 - [ ] Add API usage examples
 - [ ] Document known limitations

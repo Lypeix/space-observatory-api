@@ -41,7 +41,7 @@ def client(tmp_path, monkeypatch):
     with TestClient(app) as test_client: # creates client connected to the app and runs its lifespan
         yield test_client # passes client into the test
 
-def create_test_object(client):
+def create_test_object(client): # creates object for tests that need it
     response = client.post("/objects", json=OBJECT_DATA)
 
     assert response.status_code == 201 # fails if API doesnt return status code 201 Created
@@ -120,3 +120,21 @@ def test_whitespace_name_returns_422(client):
 
     assert response.status_code == 422
 
+def test_create_and_get_observations(client):
+    created_object = create_test_object(client)
+    object_id = created_object["id"]
+
+    create_response = client.post(f"/objects/{object_id}/observations", json=OBSERVATION_DATA)
+
+    assert create_response.status_code == 201
+
+    created_observation = create_response.json()
+
+    assert created_observation["object_id"] == object_id
+    assert created_observation["observer"] == "Lypeix"
+
+    get_response = client.get(f"/objects/{object_id}/observations")
+
+    assert get_response.status_code == 200
+
+    assert get_response.json() == [created_observation]
