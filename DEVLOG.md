@@ -110,4 +110,4 @@ Break day
 - Configured tests, now they use a separate temp sql database
 - Redirected functions from original db to the temp db using monkeypatch fixture
 - Used TestClient as context manager so that app lifespan runs during tests
-- Implemented first test
+- Added helper function for tests to use
