@@ -38,6 +38,6 @@ def client(tmp_path, monkeypatch):
         test_database
     )
 
-    with TestClient(app) as test_client: # creates client connected to the app
+    with TestClient(app) as test_client: # creates client connected to the app and runs its lifespan
         yield test_client # passes client into the test
 
