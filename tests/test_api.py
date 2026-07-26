@@ -83,4 +83,14 @@ def test_update_objects(client):
     assert updated_object["name"] == "Kepler-186f Updated"
     assert updated_object["potentially_habitable"] is False
 
-    
+def test_delete_objects(client):
+    created_object = create_test_object(client)
+    object_id = created_object["id"]
+
+    delete_response = client.delete(f"/objects/{object_id}")
+
+    assert delete_response.status_code == 200
+
+    get_response = client.get(f"/objects/{object_id}")
+
+    assert get_response.status_code == 404
