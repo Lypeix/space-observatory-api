@@ -8,14 +8,20 @@ from database import (create_tables, insert_celestial_object, get_celestial_obje
 
 from schemas import CelestialObjectCreate, CelestialObjectUpdate, ObservationCreate
 
+from contextlib import asynccontextmanager
+
+@asynccontextmanager # defines startup n shutdown behavior for the app
+async def lifespan(app: FastAPI): 
+    create_tables() # guarantees that sql table exists before endpoint uses it
+    yield # completes start-up
+    
+
 
 app = FastAPI(
     title="Space Observatory API",
-    description="Cool API project for cataloguing celestial objects and observations"
+    description="Cool API project for cataloguing celestial objects and observations",
+    lifespan=lifespan
 )
-
-
-create_tables()
 
 
 @app.get("/")

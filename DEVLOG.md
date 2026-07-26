@@ -95,3 +95,13 @@
 - Fixed get_plushies return bug in sql_reconstruction
 - Replaced READ.ME tree with ASCII tree
 - Added whitespace removal to schemas.py through ConfigDict
+
+## DAY 6 - 25.07.2026
+Break day
+
+## DAY 7 - 26.07.2026
+### Session 1 (~30mins)
+- Added FastAPI lifespan handler
+- Moved db table creation into the lifespan handler
+- Started automatic testing setup
+- Featured comments with explanations
