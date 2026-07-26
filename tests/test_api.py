@@ -48,3 +48,14 @@ def create_test_object(client):
 
     return response.json() # passes the created object so that the other tests can reuse it
 
+def test_create_object(client):
+    response = client.post("/objects", json=OBJECT_DATA)
+
+    assert response.status_code == 201
+
+    created_object = response.json()
+
+    assert created_object["id"] == 1
+    assert created_object["name"] == "Kepler-186f"
+    assert created_object["potentially_habitable"] is True 
+    assert "created_at" in created_object

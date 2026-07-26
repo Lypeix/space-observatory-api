@@ -100,7 +100,7 @@
 Break day
 
 ## DAY 7 - 26.07.2026
-### Session 1 (~70mins)
+### Session 1 (~80mins)
 - Added FastAPI lifespan handler
 - Moved db table creation into the lifespan handler
 - Started automatic testing setup
@@ -111,3 +111,4 @@ Break day
 - Redirected functions from original db to the temp db using monkeypatch fixture
 - Used TestClient as context manager so that app lifespan runs during tests
 - Added helper function for tests to use
+- Implemented first test
