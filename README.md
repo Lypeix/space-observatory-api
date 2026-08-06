@@ -18,6 +18,7 @@ Developed with assistance from Codex 5.6 SOL
 ## Project Structure
 
 ```md
+```text
 space-observatory-api/
 |-- database.py
 |-- DEVLOG.md
