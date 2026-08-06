@@ -36,7 +36,7 @@ Developed with assistance from Codex 5.6 SOL
 
 3. Click `GET /objects` to list out all objects
 
-4. You can also view a specific object or observation by clicking `GET /objects/{object_id}` or `GET /objects/{object_id}/observations`
+4. View specific object with `GET /objects/{object_id}` or `GET /objects/{object_id}/observations`
 
 5. Click `DELETE /objects/{object_id}` to delete the object and all of its observations
 
