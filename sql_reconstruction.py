@@ -115,6 +115,7 @@ def get_plushies():
 
     return plushies_list
 
+
 def get_plushie_by_id(plushie_id: int):
     connection = connect()
     cursor = connection.cursor()
