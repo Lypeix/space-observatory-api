@@ -48,9 +48,8 @@ See: [DEVLOG.md](./DEVLOG.md)
 py -m pytest
 ```
 
+### Features
 ```markdown
-## Features
-
 - CRUD operations for celestial objects
 - Nested observations connected through foreign keys
 - Name searching, filtering, and pagination
