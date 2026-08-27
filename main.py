@@ -1,6 +1,3 @@
-# Start the server from PowerShell:
-# py -m uvicorn main:app --reload
-
 from fastapi import FastAPI, status, Query, HTTPException
 
 from database import (create_tables, insert_celestial_object, get_celestial_objects, get_celestial_object_by_id,
@@ -10,10 +7,10 @@ from schemas import CelestialObjectCreate, CelestialObjectUpdate, ObservationCre
 
 from contextlib import asynccontextmanager
 
-@asynccontextmanager # defines startup n shutdown behavior for the app
+@asynccontextmanager 
 async def lifespan(app: FastAPI): 
-    create_tables() # guarantees that sql table exists before endpoint uses it
-    yield # completes start-up
+    create_tables() 
+    yield 
     
 
 
@@ -33,10 +30,10 @@ def root():
 
 @app.post("/objects", status_code=status.HTTP_201_CREATED)
 def create_object(object_data: CelestialObjectCreate): 
-    return insert_celestial_object(object_data.model_dump()) # model_dump converts pydantic into normal python dict so that SQLite can understand the ongoing lingo
+    return insert_celestial_object(object_data.model_dump()) 
 
 
-@app.get("/objects") # returns status code 200 OK by default
+@app.get("/objects") 
 def list_celestial_objects(
     name: str | None = Query(
         default=None,
@@ -56,8 +53,8 @@ def list_celestial_objects(
 
     limit: int = Query(
         default=50,
-        ge=1, # great or equal to 1
-        le=100 # lesser or equal to 100 so limit is between 1 and 100.
+        ge=1, 
+        le=100 
     ),
     offset: int = Query(
         default=0,

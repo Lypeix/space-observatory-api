@@ -7,7 +7,7 @@ DATABASE_PATH = Path(__file__).resolve().parent / "space_observatory.db"
 
 def connect():
     connection = sqlite3.connect(DATABASE_PATH)
-    connection.row_factory = sqlite3.Row # changes fetched db rows from tuples into rows that can be accessed through column names n converted into dicts
+    connection.row_factory = sqlite3.Row 
     connection.execute("PRAGMA foreign_keys = on")
 
     return connection
@@ -54,15 +54,15 @@ def create_tables():
             REFERENCES celestial_objects(id)
             ON DELETE CASCADE 
     ) 
-""")            # FOREIGN KEY - Sets up the stage for different table to be referenced (relationship)
-                # References - Assigns observations.object_id to celestial_object.id (NOT observation id)
-                # ON DELETE CASCADE - Deletes all observations alligned with the deleted object
+""")            
+
+
 
     connection.commit()
     connection.close()
 
 
-def row_to_celestial_object(row): # helper that makes that so potentially_habitable bool returns true/false to json instead of 0/1
+def row_to_celestial_object(row): 
     if row is None:
         return None
     
@@ -125,7 +125,7 @@ def get_celestial_objects(
     object_type: str | None = None,
     potentially_habitable: bool | None = None,
     limit: int = 50,
-    offset: int = 0 # skips rows regardless of ids
+    offset: int = 0 
 ):
 
     connection = connect()
@@ -165,8 +165,8 @@ def get_celestial_objects(
         parameters.append(int(potentially_habitable))
 
     if conditions:
-        query += " WHERE " + " AND ".join(conditions) # WHERE keeps the rows matching filters
-                                                      # AND.join(conditions) is for more than 1 filter to be included
+        query += " WHERE " + " AND ".join(conditions) 
+                                                      
 
     query += """
         ORDER BY id ASC
@@ -182,21 +182,6 @@ def get_celestial_objects(
     connection.close()
 
     return [row_to_celestial_object(row) for row in rows]
-
-# IF NO FILTERS APPLIED, THERE WILL BE NO "WHERE" OR "AND" SESSION
-# STRUCTURE EXAMPLE:
-#    query = """
-#        SELECT ...
-#        FROM celestial_objects
-#        WHERE LOWER(name) LIKE LOWER(?) (LOWER always converts texts to lower case so its case-insensitive)
-#        AND LOWER(object_type) = LOWER(?) 
-#        ORDER BY id ASC (ascending order)
-#        LIMIT ?
-#        OFFSET ?
-#    """
-#    parameters match each ? from left to right
-#    parameters = ["%TON 618%", "Black Hole", 10, 0]
-#                     name          type   limit, offset
 
 
 def get_celestial_object_by_id(object_id: int):

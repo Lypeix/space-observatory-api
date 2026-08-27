@@ -1,13 +1,12 @@
-import pytest # testing framework that reads functions starting with test_ eg. test_create_object
-              # provides fixtures like tmp_path n monkeypatch
+import pytest 
 
-from fastapi.testclient import TestClient # lets python pretend to be a client sending requests to the API without needing to launch Uvicorn
+from fastapi.testclient import TestClient
 
 import database
 
 from main import app
 
-OBJECT_DATA = { # reusable og request body
+OBJECT_DATA = { 
     "name": "Kepler-186f",
     "object_type": "exoplanet",
     "distance_light_years": 582,
@@ -15,7 +14,7 @@ OBJECT_DATA = { # reusable og request body
     "description": "An Earth-sized exoplanet."
 }
 
-UPDATED_OBJECT_DATA = { # updated request body during tests
+UPDATED_OBJECT_DATA = { 
     "name": "Kepler-186f Updated",
     "object_type": "planet",
     "distance_light_years": 580,
@@ -23,30 +22,30 @@ UPDATED_OBJECT_DATA = { # updated request body during tests
     "description": "Updated description."
 }
 
-OBSERVATION_DATA = { # tests observations
+OBSERVATION_DATA = { 
     "observer": "Lypeix",
     "details": "It seems rounder than the last time"
 }
 
-@pytest.fixture # turns the function into reusable test setup
+@pytest.fixture 
 def client(tmp_path, monkeypatch):
-    test_database = tmp_path / "test_observatory.db" # creates path for the temp db, so that tests dont touch the actual file like space_observatory.db
+    test_database = tmp_path / "test_observatory.db" 
 
-    monkeypatch.setattr( # redirects the database module to the temporary test file
+    monkeypatch.setattr( 
         database,
         "DATABASE_PATH",
         test_database
     )
 
-    with TestClient(app) as test_client: # creates client connected to the app and runs its lifespan
-        yield test_client # passes client into the test
+    with TestClient(app) as test_client: 
+        yield test_client 
 
-def create_test_object(client): # creates object for tests that need it
+def create_test_object(client): 
     response = client.post("/objects", json=OBJECT_DATA)
 
-    assert response.status_code == 201 # fails if API doesnt return status code 201 Created
+    assert response.status_code == 201 
 
-    return response.json() # passes the created object so that the other tests can reuse it
+    return response.json() 
 
 def test_create_object(client):
     response = client.post("/objects", json=OBJECT_DATA)
@@ -95,14 +94,14 @@ def test_delete_objects(client):
 
     assert get_response.status_code == 404
 
-def test_missing_object_returns_404(client): # checks HTTPExceptions
+def test_missing_object_returns_404(client):
     assert client.get("/objects/999").status_code == 404
 
     assert client.put("/objects/999", json=UPDATED_OBJECT_DATA).status_code == 404
 
     assert client.delete("/objects/999").status_code == 404
 
-    assert client.post("/objects/999/observations", json=OBSERVATION_DATA).status_code == 404 # proves observation cant be attached to a non-existent object
+    assert client.post("/objects/999/observations", json=OBSERVATION_DATA).status_code == 404 
 
 def test_invalid_object_returns_422(client):
     invalid_object = OBJECT_DATA.copy()
