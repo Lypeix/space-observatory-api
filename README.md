@@ -1,8 +1,6 @@
 # Space Observatory API
 
-Database-backed REST API built with FastAPI and SQL for observing celestial bodies and recording observations. 
-
-Developed with assistance from Codex 5.6 SOL
+Database-backed REST API built with FastAPI and SQLite for cataloguing celestial objects and recording observations. 
 
 See: [DEVLOG.md](./DEVLOG.md)
 
@@ -44,14 +42,33 @@ See: [DEVLOG.md](./DEVLOG.md)
 
 6. Click `PUT /objects/{object_id}` to update a specific celestial body
 
-## Tech Stack
+### Run tests
 
+```powershell
+py -m pytest
+```
+
+```markdown
+## Features
+
+- CRUD operations for celestial objects
+- Nested observations connected through foreign keys
+- Name searching, filtering, and pagination
+- Pydantic request validation
+- Consistent `404 Not Found` responses
+- Cascading deletion of related observations
+- Automated API tests
+
+
+### Tech Stack
+
+- Python
 - FastAPI
 - SQLite
 - Pydantic
 - pytest
 
-## Project Structure
+### Project Structure
 
 ```text
 space-observatory-api/
@@ -64,3 +81,5 @@ space-observatory-api/
 `-- tests/
     `-- test_api.py
 ```
+
+Developed with assistance from Codex 5.6 SOL
