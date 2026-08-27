@@ -4,6 +4,8 @@ Database-backed REST API built with FastAPI and SQL for observing celestial bodi
 
 Developed with assistance from Codex 5.6 SOL
 
+See: [DEVLOG.md](./DEVLOG.md)
+
 ## How to run:
 
 ### Install dependencies:
@@ -27,7 +29,7 @@ Developed with assistance from Codex 5.6 SOL
         "description": "string"
         }
 
-2. Click `POST /observations` to add an observation to your celestial body
+2. Click `POST /objects/{object_id}/observations` to add an observation to your celestial body
     Example value:
         {
         "observer": "string",
@@ -42,6 +44,12 @@ Developed with assistance from Codex 5.6 SOL
 
 6. Click `PUT /objects/{object_id}` to update a specific celestial body
 
+## Tech Stack
+
+- FastAPI
+- SQLite
+- Pydantic
+- pytest
 
 ## Project Structure
 
